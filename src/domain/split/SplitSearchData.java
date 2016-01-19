@@ -24,11 +24,12 @@ public class SplitSearchData {
         args=new String[]{"/tong/sogo", "/tong/sogo/split1","/tong/sogo/split2"};
 
         Configuration conf=new Configuration();
-        conf.addResource(new Path("/root/IdeaProjects/hadoop/conf/core-site.xml"));
-        conf.addResource(new Path("/root/IdeaProjects/hadoop/conf/yarn-site.xml"));
-        conf.addResource(new Path("/root/IdeaProjects/hadoop/conf/hdfs-site.xml"));
-        conf.addResource(new Path("/root/IdeaProjects/hadoop/conf/mapred-site.xml"));
-        conf.set("mapred.jar","");
+        conf.addResource(new Path("/root/IdeaProjects/hdesignpattern/hadoop_mr_design_pattern/conf/core-site.xml"));
+        conf.addResource(new Path("/root/IdeaProjects/hdesignpattern/hadoop_mr_design_pattern/conf/yarn-site.xml"));
+        conf.addResource(new Path("/root/IdeaProjects/hdesignpattern/hadoop_mr_design_pattern/conf/hdfs-site.xml"));
+        conf.addResource(new Path("/root/IdeaProjects/hdesignpattern/hadoop_mr_design_pattern/conf/mapred-site.xml"));
+        conf.set("mapred.jar","/root/IdeaProjects/hdesignpattern/hadoop_mr_design_pattern" +
+                "/out/artifacts/split/hadoop_mr_design_pattern.jar");
 
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
         if (otherArgs.length != 3) {
@@ -36,7 +37,7 @@ public class SplitSearchData {
             System.exit(2);
         }
 
-        Job job1=new Job();
+        Job job1=new Job(conf,"split");
         job1.setJarByClass(SplitSearchData.class);
         job1.setMapperClass(SplitSearchMapper1.class);
         job1.setNumReduceTasks(0);
@@ -52,7 +53,7 @@ public class SplitSearchData {
         job2.setOutputKeyClass(Text.class);
         job2.setOutputValueClass(NullWritable.class);
         FileInputFormat.addInputPath(job2,new Path(otherArgs[0]));
-        FileOutputFormat.setOutputPath(job2,new Path(otherArgs[3]));
+        FileOutputFormat.setOutputPath(job2,new Path(otherArgs[2]));
 
         System.exit(job1.waitForCompletion(true)? 0 : 1);
         System.exit(job2.waitForCompletion(true)? 0 : 1);
