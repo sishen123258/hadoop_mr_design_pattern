@@ -59,7 +59,7 @@ public class SplitSearchData {
         boolean b = job1.waitForCompletion(true);
         if (b)
             System.exit(job2.waitForCompletion(true)? 0 : 1);
-        //delete temp dirs
+        //TODO delete temp dirs
 
     }
 
