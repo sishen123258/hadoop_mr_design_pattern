@@ -22,14 +22,15 @@ public class JoinMR {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 
-        args=new String[]{ "/tong/sogo/split1","/tong/sogo/split2","/tong/sogo_join"};
+        args=new String[]{ "/tong/sougo/split1","/tong/sougo/split2","/tong/sogo_join"};
 
         Configuration conf=new Configuration();
         conf.addResource(new Path("/root/IdeaProjects/hadoop/conf/core-site.xml"));
         conf.addResource(new Path("/root/IdeaProjects/hadoop/conf/yarn-site.xml"));
         conf.addResource(new Path("/root/IdeaProjects/hadoop/conf/hdfs-site.xml"));
         conf.addResource(new Path("/root/IdeaProjects/hadoop/conf/mapred-site.xml"));
-        conf.set("mapred.jar","");
+        conf.set("mapred.jar","/root/IdeaProjects/hdesignpattern" +
+                "/hadoop_mr_design_pattern/out/artifacts/join/hadoop_mr_design_pattern.jar");
 
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
         if (otherArgs.length != 3) {
@@ -37,7 +38,7 @@ public class JoinMR {
             System.exit(2);
         }
 
-        Job job=new Job();
+        Job job=new Job(conf,"join");
         job.setJarByClass(JoinMR.class);
         //TextInputFormat
         MultipleInputs.addInputPath(job, new Path(args[0]),TextInputFormat.class, JoinMapper1.class);
@@ -49,7 +50,7 @@ public class JoinMR {
         TextOutputFormat.setOutputPath(job, new Path(args[2]));
 
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(NullWritable.class);
+        job.setOutputValueClass(Text.class);
 
         System.exit(job.waitForCompletion(true)?0:1);
 
