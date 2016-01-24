@@ -22,13 +22,13 @@ public class PreBloomFilter {
     public static void main(String[] args) throws IOException {
 
         if(args.length==0){
-            args=new String[]{"/tong/ir","/tong/irid-bloom-filter"};
+            args=new String[]{"/tong/ir/20151201","/tong/irid-bloom-filter-20151201"};
         }
 
         Path path=new Path(args[0]);
         Path bPath=new Path(args[1]);
 
-        BloomFilter filter=new BloomFilter(100,100, Hash.MURMUR_HASH);
+        BloomFilter filter=new BloomFilter(100,20, Hash.MURMUR_HASH);
 
         Configuration conf=new Configuration();
         conf.addResource(new Path("/root/IdeaProjects/hadoop/conf/core-site.xml"));
@@ -40,9 +40,9 @@ public class PreBloomFilter {
         String line=null;
 
         for (FileStatus status:fs.listStatus(path)){
-            FileStatus statusNew=fs.listStatus(status.getPath())[0];
+//            FileStatus statusNew=fs.listStatus(status.getPath())[0];
             BufferedReader reader=new BufferedReader(new InputStreamReader
-                    (fs.open(statusNew.getPath())));
+                    (fs.open(status.getPath())));
 
             while ((line=reader.readLine())!=null){
                 String id = line.split(",")[0];

@@ -39,7 +39,7 @@ public class FilterAdId {
         conf.addResource(new Path("/root/IdeaProjects/hadoop/conf/hdfs-site.xml"));
         conf.addResource(new Path("/root/IdeaProjects/hadoop/conf/mapred-site.xml"));
         //mapreduce.job.cache.files
-        conf.set("mapreduce.job.cache.files","/tong/irid-bloom-filter");
+        conf.set("mapreduce.job.cache.files","/tong/irid-bloom-filter-20151201");
         conf.set("mapred.jar","/root/IdeaProjects/hdesignpattern/hadoop_mr_design_pattern/out/artifacts/bloomFilter_jar/hadoop_mr_design_pattern.jar");
 
 
