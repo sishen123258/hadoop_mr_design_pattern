@@ -34,7 +34,7 @@ public class SentenceSpout extends BaseRichSpout{
 
     @Override
     public void open(Map map, TopologyContext topologyContext, SpoutOutputCollector spoutOutputCollector) {
-        this.collector=collector;
+        this.collector=spoutOutputCollector;
     }
 
     @Override
