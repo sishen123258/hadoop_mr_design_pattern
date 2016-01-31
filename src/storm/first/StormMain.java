@@ -1,4 +1,4 @@
-package storm;
+package storm.first;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
@@ -12,6 +12,8 @@ public class StormMain  {
 
     public static void main(String[] args) throws InterruptedException {
 
+
+        args=new String[]{"/opt/hadoop/hadoop-2.5.2/REDEME.txt"};
         //1 TOPOLOGY definition
         TopologyBuilder builder=new TopologyBuilder();
         builder.setSpout("word-reader",new StreamWordReaderSpout());
