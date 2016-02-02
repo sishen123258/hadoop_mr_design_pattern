@@ -19,7 +19,7 @@ import storm.trident.stream_src.DiagnosisEventSpout;
 public class OutbreakDetectionTopology {
 
 
-    public static TridentTopology buildTopology(){
+    public static StormTopology buildTopology(){
         TridentTopology topology=new TridentTopology();
         DiagnosisEventSpout diagnosisEventSpout=new DiagnosisEventSpout();
         Stream inputStream=topology.newStream("event",diagnosisEventSpout);
@@ -33,7 +33,7 @@ public class OutbreakDetectionTopology {
                 .each(new Fields("cityDiseaseHour","count"),new OutbreakDetector(),new Fields("alert"))
                 .each(new Fields("alert"),new DispatchAlert(),new Fields());
 
-        return topology;
+        return topology.build();
     }
 
 }
