@@ -1,5 +1,6 @@
-package storm.trident;
+package storm.trident.stream_src;
 
+import storm.trident.bean.DiagnosisEvent;
 import storm.trident.operation.TridentCollector;
 import storm.trident.spout.ITridentSpout;
 import storm.trident.topology.TransactionAttempt;

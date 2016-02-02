@@ -1,4 +1,4 @@
-package storm.trident;
+package storm.trident.bean;
 
 import java.io.Serializable;
 
@@ -7,10 +7,10 @@ import java.io.Serializable;
  */
 public class DiagnosisEvent implements Serializable{
 
-    double lat;
-    double lng;
-    long time;
-    String diag;
+    public double lat;
+    public double lng;
+    public long time;
+    public String diag;
 
     public DiagnosisEvent(double lat, double lng, long time, String diag) {
         this.lat = lat;

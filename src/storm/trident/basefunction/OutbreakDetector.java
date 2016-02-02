@@ -1,4 +1,4 @@
-package storm.trident;
+package storm.trident.basefunction;
 
 import storm.trident.operation.BaseFunction;
 import storm.trident.operation.TridentCollector;

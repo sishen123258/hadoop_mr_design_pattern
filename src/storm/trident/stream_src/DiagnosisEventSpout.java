@@ -1,4 +1,4 @@
-package storm.trident;
+package storm.trident.stream_src;
 
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.TopologyContext;

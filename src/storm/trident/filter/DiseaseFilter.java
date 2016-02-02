@@ -1,7 +1,8 @@
-package storm.trident;
+package storm.trident.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import storm.trident.bean.DiagnosisEvent;
 import storm.trident.operation.BaseFilter;
 import storm.trident.tuple.TridentTuple;
 
