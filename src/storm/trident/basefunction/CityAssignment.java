@@ -15,7 +15,7 @@ import java.util.Map;
  * Created by Tong on 2016/2/2.
  */
 public class CityAssignment  extends BaseFunction{
-
+    //Function:they replace tuple fields and values
     private static final Logger LOGGER= LoggerFactory.getLogger(CityAssignment.class);
     private static Map<String, double[]> CITIES = new HashMap<String, double[]>();
 
