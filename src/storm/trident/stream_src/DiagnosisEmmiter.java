@@ -20,7 +20,12 @@ public class DiagnosisEmmiter implements ITridentSpout.Emitter<Long>,Serializabl
     @Override
     public void emitBatch(TransactionAttempt tx, Long coordinatorMeta, TridentCollector collector) {
 
-        for(int i=0;i < 10000;i++){
+        for(int i=0;i < 100000;i++){
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             //TODO ??????
             ArrayList<Object> objects=new ArrayList<>();
             double lat =new Double(-30 + (int) (Math.random() * 75));

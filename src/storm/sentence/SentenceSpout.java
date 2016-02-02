@@ -9,6 +9,8 @@ import backtype.storm.tuple.Values;
 import backtype.storm.utils.Utils;
 
 import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by root on 1/31/16.
@@ -16,6 +18,7 @@ import java.util.Map;
 public class SentenceSpout extends BaseRichSpout{
 
     private SpoutOutputCollector collector;
+    private ConcurrentHashMap<UUID,Values> pindings;
 
     private String[] sentences={
             "My dog is fleas",
@@ -35,11 +38,15 @@ public class SentenceSpout extends BaseRichSpout{
     @Override
     public void open(Map map, TopologyContext topologyContext, SpoutOutputCollector spoutOutputCollector) {
         this.collector=spoutOutputCollector;
+        this.pindings=new ConcurrentHashMap<>();
     }
 
     @Override
     public void nextTuple() {
-        this.collector.emit(new Values(sentences[index]));
+        Values values = new Values(sentences[index]);
+        UUID msgId=UUID.randomUUID();
+        this.pindings.put(msgId,values);
+        this.collector.emit(values,msgId);
         index++;
         if (index>=sentences.length){
             index=0;
@@ -50,5 +57,15 @@ public class SentenceSpout extends BaseRichSpout{
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void ack(Object msgId) {
+        this.pindings.remove(msgId);
+    }
+
+    @Override
+    public void fail(Object msgId) {
+        this.collector.emit(this.pindings.get(msgId),msgId);
     }
 }

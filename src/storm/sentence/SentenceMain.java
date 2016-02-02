@@ -24,12 +24,17 @@ public class SentenceMain {
 
         TopologyBuilder topologyBuilder=new TopologyBuilder();
 
-        topologyBuilder.setSpout(SENTENCE_SPOUT_ID,sentenceSpout);
-        topologyBuilder.setBolt(SPLIT_BOLT_ID,splitSentenceBolt).shuffleGrouping(SENTENCE_SPOUT_ID);
-        topologyBuilder.setBolt(COUNT_BOLT_ID,wordContBolt).fieldsGrouping(SPLIT_BOLT_ID,new Fields("word"));
-        topologyBuilder.setBolt(REPORT_BOLT_ID,reportBolt).allGrouping(COUNT_BOLT_ID);
+        topologyBuilder.setSpout(SENTENCE_SPOUT_ID,sentenceSpout,2); //2 spout executors
+        topologyBuilder.setBolt(SPLIT_BOLT_ID,splitSentenceBolt,2).setNumTasks(4).
+                shuffleGrouping(SENTENCE_SPOUT_ID);//2 split(thread) bolt 4 task ,
+        topologyBuilder.setBolt(COUNT_BOLT_ID,wordContBolt,4).
+                fieldsGrouping(SPLIT_BOLT_ID,new Fields("word"));
+        topologyBuilder.setBolt(REPORT_BOLT_ID,reportBolt).globalGrouping(COUNT_BOLT_ID);
 
         Config config=new Config();
+        //Nodes work(jvms) executors(thread) task(spout,bout)
+//        config.setNumWorkers(2);  //two works
+
         LocalCluster cluster=new LocalCluster();
 
         cluster.submitTopology(TOPOLOGY_NAME,config,topologyBuilder.createTopology());

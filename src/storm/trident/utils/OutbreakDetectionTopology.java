@@ -26,10 +26,12 @@ public class OutbreakDetectionTopology {
 
         inputStream.each(new Fields("event"),new DiseaseFilter())
                 .each(new Fields("event"),new CityAssignment(),new Fields("city"))
-                .each(new Fields("city"),new HourAssignment(),new Fields("hour","cityDiseaseHour"))
+                //"event","city" input tuple      "hour","cityDiseaseHour"  output tuple
+                .each(new Fields("event","city"),new HourAssignment(),new Fields("hour","cityDiseaseHour"))
                 .groupBy(new Fields("cityDiseaseHour"))
                 .persistentAggregate(new OutbreakTrendFactory(),new Count(),new Fields("count"))
                 .newValuesStream()
+                //Bellow code will exe utill the emmit class ends thr for look
                 .each(new Fields("cityDiseaseHour","count"),new OutbreakDetector(),new Fields("alert"))
                 .each(new Fields("alert"),new DispatchAlert(),new Fields());
 

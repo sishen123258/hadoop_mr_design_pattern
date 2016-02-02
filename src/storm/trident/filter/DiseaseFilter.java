@@ -12,16 +12,19 @@ import storm.trident.tuple.TridentTuple;
 public class DiseaseFilter extends BaseFilter{
 
     private static final Logger LOGGER= LoggerFactory.getLogger(DiseaseFilter.class);
+    long x=0;
 
     @Override
     public boolean isKeep(TridentTuple tuple) {
         DiagnosisEvent event= (DiagnosisEvent) tuple.getValue(0);
         Integer code= Integer.valueOf(event.diag);
         if(code<=322){
-            LOGGER.info("Emmit diagnosis "+ code);
+            x++;
+            LOGGER.info("Emmit diagnosis "+ code+" "+x);
             return true;
         }else {
-            LOGGER.info("Filter diagnosis "+ code);
+            x++;
+            LOGGER.info("Filter diagnosis "+ code+" "+x);
             return false;
         }
     }
