@@ -1,6 +1,6 @@
 package storm.trident.state;
 
-import storm.trident.state.map.IBackingMap;
+import storm.trident.bean.OutbreakTrendBackingMap;
 import storm.trident.state.map.NonTransactionalMap;
 
 /**
@@ -8,7 +8,7 @@ import storm.trident.state.map.NonTransactionalMap;
  */
 public class OutbreakTrendState extends NonTransactionalMap<Long> {
 
-    protected OutbreakTrendState(IBackingMap<Long> backing) {
+    public OutbreakTrendState(OutbreakTrendBackingMap backing) {
         super(backing);
     }
 
