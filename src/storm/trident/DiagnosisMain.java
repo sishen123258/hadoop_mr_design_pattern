@@ -14,8 +14,4 @@ public class DiagnosisMain {
         LocalCluster cluster=new LocalCluster();
         cluster.submitTopology("cdc",config,OutbreakDetectionTopology.buildTopology());
     }
-
-
-
-
 }
