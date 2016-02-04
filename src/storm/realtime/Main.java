@@ -1,10 +1,14 @@
 package storm.realtime;
 
 import backtype.storm.spout.MultiScheme;
+import backtype.storm.tuple.Fields;
 import storm.kafka.KafkaConfig;
 import storm.kafka.StringScheme;
 import storm.kafka.trident.OpaqueTridentKafkaSpout;
 import storm.kafka.trident.TridentKafkaConfig;
+import storm.realtime.basefunction.EWMA;
+import storm.realtime.basefunction.JsonProjectFunction;
+import storm.realtime.basefunction.MovingAverageFunction;
 import storm.trident.Stream;
 import storm.trident.TridentTopology;
 
@@ -27,6 +31,12 @@ public class Main {
         OpaqueTridentKafkaSpout spout=new OpaqueTridentKafkaSpout(spoutConf);
         Stream stream=topology.newStream("kafka-stream",spout);
 
+        Fields jsonFields = new Fields("level", "timestamp","message", "logger");
+        stream.each(new Fields("str"),new JsonProjectFunction(jsonFields),jsonFields);
+
+        EWMA ewma = new EWMA().sliding(1.0, EWMA.Time.MINUTES).withAlpha(EWMA.ONE_MINUTE_ALPHA);
+        Fields timestamp = new Fields("timestamp");
+        stream.each(timestamp,new MovingAverageFunction(ewma, EWMA.Time.MINUTES),timestamp);
 
     }
 }
