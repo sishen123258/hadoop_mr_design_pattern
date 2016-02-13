@@ -1,3 +1,4 @@
+/*
 package storm.realtime;
 
 import backtype.storm.spout.MultiScheme;
@@ -12,9 +13,11 @@ import storm.trident.TridentTopology;
 
 import java.util.Arrays;
 
+*/
 /**
  * Created by Tong on 2016/2/4.
- */
+ *//*
+
 public class Main {
     public static void main(String[] args) {
         TridentTopology topology = new TridentTopology();
@@ -40,3 +43,4 @@ public class Main {
 
     }
 }
+*/

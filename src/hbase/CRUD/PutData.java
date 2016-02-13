@@ -27,9 +27,20 @@ public class PutData {
         String tableName="test";
 //        createTable(tableName);
         //putData(tableName);
+        dropTable(tableName);
 
 
 
+    }
+
+    private static void dropTable(String tableName) {
+        try {
+            HBaseAdmin admin=new HBaseAdmin(configuration);
+            admin.disableTable(tableName);
+            admin.deleteTable(tableName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void putData(String tableName) throws IOException {
