@@ -39,7 +39,7 @@ public class Main {
         Fields timestamp = new Fields("timestamp");
         Stream averageStream = parsedStream.each(timestamp, new MovingAverageFunction(ewma, EWMA.Time.MINUTES), new Fields("average"));
         averageStream.each(new Fields("average"),new ThresholdFilterFunction(50D),new Fields("change","threshold")).
-                each(new Fields("change"), new BooleanFilter());;
+                each(new Fields("change"), new BooleanFilter());
 
     }
 }

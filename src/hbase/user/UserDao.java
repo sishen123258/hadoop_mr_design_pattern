@@ -1,10 +1,9 @@
 package hbase.user;
 
-import org.apache.hadoop.hbase.client.Get;
-import org.apache.hadoop.hbase.client.HTablePool;
-import org.apache.hadoop.hbase.client.Put;
-import org.apache.hadoop.hbase.client.Result;
+import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
+
+import java.io.IOException;
 
 /**
  * Created by root on 2/13/16.
@@ -32,11 +31,53 @@ public class UserDao {
         this.pool = pool;
     }
 
-    public static Get mkGet(String user){
+    private static Get mkGet(String user){
         Get get=new Get(Bytes.toBytes(user));
         get.addFamily(INFO_FAM);
         return get;
     }
+
+    private static Put mkPut(User user){
+        Put p=new Put(Bytes.toBytes(user.user));
+        p.addColumn(INFO_FAM,USER_COL,Bytes.toBytes(user.user));
+        p.addColumn(INFO_FAM,NAME_COL,Bytes.toBytes(user.name));
+        p.addColumn(INFO_FAM,EMAIL_COL,Bytes.toBytes(user.email));
+        p.addColumn(INFO_FAM,PASS_COL,Bytes.toBytes(user.password));
+        return p;
+    }
+
+    private static Delete mkDelete(String user){
+        Delete delete=new Delete(Bytes.toBytes(user));
+        return delete;
+    }
+
+    public void addUser(String user,String name,String email,String password) throws IOException {
+        HTableInterface users = pool.getTable(TABLE_NAME);
+        User addUser=new User(user,name,email,password);
+        Put put=mkPut(addUser);
+        users.put(put);
+        users.close();
+    }
+
+    public void deleteUser(String user) throws IOException {
+        HTableInterface users = pool.getTable(TABLE_NAME);
+        Delete delete=mkDelete(user);
+        users.delete(delete);
+        users.close();
+    }
+
+    public hbase.user.User getUser(String user) throws IOException {
+        HTableInterface users = pool.getTable(TABLE_NAME);
+        Get get=mkGet(user);
+        Result result = users.get(get);
+        if (result.isEmpty()){
+            return  null;
+        }
+        User gettedUser=new User(result);
+        users.close();
+        return gettedUser;
+    }
+
 
     /**
      * When the param is more than 3,maybe should user a object user to encapulate it
