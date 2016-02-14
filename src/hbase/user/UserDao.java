@@ -4,6 +4,9 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by root on 2/13/16.
@@ -77,6 +80,24 @@ public class UserDao {
         users.close();
         return gettedUser;
     }
+
+    public List<hbase.user.User> getUsers() throws IOException {
+
+        HTableInterface users = pool.getTable(TABLE_NAME);
+        Scan scan=new Scan();
+        ResultScanner scanner = users.getScanner(scan);
+        ArrayList<hbase.user.User> list=new ArrayList<>();
+
+        Iterator<Result> res = scanner.iterator();
+        while (res.hasNext()){
+            Result r=res.next();
+            User user=new User(r);
+            list.add(user);
+        }
+
+        return list;
+    }
+
 
 
     /**
