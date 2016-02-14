@@ -1,4 +1,4 @@
-package domain.filter;
+package mrdesignpatterb.filter;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataOutputStream;
@@ -12,7 +12,6 @@ import org.apache.hadoop.util.hash.Hash;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.zip.GZIPInputStream;
 
 /**
  * Created by root on 1/23/16.

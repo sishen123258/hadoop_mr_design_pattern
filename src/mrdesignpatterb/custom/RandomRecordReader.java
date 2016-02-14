@@ -1,6 +1,5 @@
-package domain.custom;
+package mrdesignpatterb.custom;
 
-import com.sun.jndi.toolkit.url.Uri;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputSplit;

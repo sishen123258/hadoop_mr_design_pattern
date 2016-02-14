@@ -1,4 +1,4 @@
-package domain.custom;
+package mrdesignpatterb.custom;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;

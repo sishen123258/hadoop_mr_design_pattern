@@ -1,10 +1,7 @@
-package domain.counter;
+package mrdesignpatterb.counter;
 
-import domain.average.AverageMapper;
-import domain.average.AverageReduce;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;

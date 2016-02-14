@@ -1,6 +1,6 @@
-package domain.split;
+package mrdesignpatterb.split;
 
-import domain.minmax.MinUserIdMapper;
+import mrdesignpatterb.minmax.MinUserIdMapper;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
