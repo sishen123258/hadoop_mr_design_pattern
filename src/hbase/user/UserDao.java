@@ -42,10 +42,10 @@ public class UserDao {
 
     private static Put mkPut(User user){
         Put p=new Put(Bytes.toBytes(user.user));
-        p.addColumn(INFO_FAM,USER_COL,Bytes.toBytes(user.user));
-        p.addColumn(INFO_FAM,NAME_COL,Bytes.toBytes(user.name));
-        p.addColumn(INFO_FAM,EMAIL_COL,Bytes.toBytes(user.email));
-        p.addColumn(INFO_FAM,PASS_COL,Bytes.toBytes(user.password));
+        p.add(INFO_FAM,USER_COL,Bytes.toBytes(user.user));
+        p.add(INFO_FAM,NAME_COL,Bytes.toBytes(user.name));
+        p.add(INFO_FAM,EMAIL_COL,Bytes.toBytes(user.email));
+        p.add(INFO_FAM,PASS_COL,Bytes.toBytes(user.password));
         return p;
     }
 

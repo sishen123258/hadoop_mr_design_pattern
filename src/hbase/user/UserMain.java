@@ -19,6 +19,10 @@ public class UserMain {
 
     public static void main(String[] args) throws IOException {
 
+//        args=new String[]{"add","tong","tong","1144299328@qq.com","123456"};
+//        args=new String[]{"get","tong"};
+        args=new String[]{"delete","tong"};
+
         if(args.length==0 || "help".equals(args[0])){
             System.out.println("usage = " + usage);
             System.exit(0);
@@ -41,10 +45,5 @@ public class UserMain {
         if("delete".equals(args[0])){
             userDao.deleteUser(args[1]);
         }
-
-
-
-
-
     }
 }
