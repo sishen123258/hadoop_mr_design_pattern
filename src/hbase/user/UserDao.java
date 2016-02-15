@@ -17,13 +17,13 @@ public class UserDao {
             Bytes.toBytes("users");
     public static final byte[] INFO_FAM =
             Bytes.toBytes("info");
-    private static final byte[] USER_COL =
+    public static final byte[] USER_COL =
             Bytes.toBytes("user");
-    private static final byte[] NAME_COL =
+    public static final byte[] NAME_COL =
             Bytes.toBytes("name");
-    private static final byte[] EMAIL_COL =
+    public static final byte[] EMAIL_COL =
             Bytes.toBytes("email");
-    private static final byte[] PASS_COL =
+    public static final byte[] PASS_COL =
             Bytes.toBytes("password");
     public static final byte[] TWEETS_COL =
             Bytes.toBytes("tweet_count");
