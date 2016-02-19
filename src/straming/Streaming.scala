@@ -27,8 +27,6 @@ object Streaming {
     // 开始任务
     ssc.start()
     ssc.awaitTermination()
-
-
   }
 
 }
