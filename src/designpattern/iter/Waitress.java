@@ -7,18 +7,14 @@ import java.util.*;
  */
 public class Waitress  {
 
-    private ArrayList<Menu> menus;
+    private MenuComponent menuComponents;
 
-    public Waitress(ArrayList<Menu> menus) {
-        this.menus = menus;
+    public Waitress(MenuComponent menuComponents) {
+        this.menuComponents = menuComponents;
     }
 
     public void printMenu(){
-
-        for (Menu menu: menus) {
-            java.util.Iterator iterator = menu.createIterator();
-            printMenu(iterator);
-        }
+        menuComponents.print();
 
         /*调用了三次，违反了开闭原则
         dinerMenu=new DinerMenuHouse();

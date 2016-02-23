@@ -1,6 +1,6 @@
 package designpattern.iter;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by Tong on 2016/2/23.
@@ -50,5 +50,12 @@ public class Menu extends MenuComponent {
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}');
+
+        //如果有孩子继续遍历
+        java.util.Iterator<MenuComponent> componentIterator = menuComponents.iterator();
+        while (componentIterator.hasNext()){
+            MenuComponent component = componentIterator.next();
+            component.print();
+        }
     }
 }
