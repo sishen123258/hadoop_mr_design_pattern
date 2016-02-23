@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by Tong on 2016/2/23.
  */
-public class PancakeMenuHouse implements Menu{
+public class PancakeMenuHouse extends Menu{
 
     //他是自动扩容的
     private ArrayList<MenuItem> menuItems;

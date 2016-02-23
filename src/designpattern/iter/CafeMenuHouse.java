@@ -6,11 +6,12 @@ import java.util.Iterator;
 /**
  * Created by Tong on 2016/2/23.
  */
-public class CafeMenuHouse implements Menu{
+public class CafeMenuHouse extends Menu{
 
     private Hashtable<String,MenuItem> menuItem=new Hashtable();
 
     public CafeMenuHouse() {
+
         addItem("NaTie Cafe","Good",false,29.9);
         addItem("Kabujinuo Cafe","better",false,39.9);
         addItem("Black Cafe","best",false,19.9);
@@ -22,7 +23,6 @@ public class CafeMenuHouse implements Menu{
     }
 
 
-    @Override
     public Iterator createIterator() {
         return menuItem.values().iterator();
     }

@@ -11,6 +11,9 @@ public class Menu extends MenuComponent {
     private String description;
     private ArrayList<MenuComponent> menuComponents = new ArrayList<>();
 
+    public Menu() {
+    }
+
     public Menu(String name, String description) {
         this.name = name;
         this.description = description;

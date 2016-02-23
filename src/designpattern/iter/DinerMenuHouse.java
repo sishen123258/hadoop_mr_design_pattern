@@ -3,7 +3,7 @@ package designpattern.iter;
 /**
  * Created by Tong on 2016/2/23.
  */
-public class DinerMenuHouse implements Menu{
+public class DinerMenuHouse extends Menu{
 
     static final int MAX_ITEMS=6;
     private int numberOfItem=0;
