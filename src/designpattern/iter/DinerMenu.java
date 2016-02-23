@@ -16,8 +16,14 @@ public class DinerMenu {
         addMenuItem("B tomato and rice","dinner",false,9.8);
     }
 
+    /*这个方法会暴露我们的内部实现
     public MenuItem[] getMenuItems() {
         return menuItems;
+    }*/
+
+    //创建迭代器
+    public DinerIterator createIterator(){
+        return new DinerIterator(this.menuItems);
     }
 
     public MenuItem getMenuItem() {

@@ -18,8 +18,13 @@ public class PancakeMenuHouse {
         addMenuItem("A tomato and rice","dinner",false,9.8);
     }
 
+    /*同样这也会暴露我们的内部实现
     public ArrayList<MenuItem> getMenuItems() {
         return menuItems;
+    }*/
+
+    public PancakeIterator createIterator(){
+        return new PancakeIterator(this.menuItems);
     }
 
     public void addMenuItem(String name, String description, boolean vegetarian, double price) {
