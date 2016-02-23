@@ -3,7 +3,7 @@ package designpattern.iter;
 /**
  * Created by Tong on 2016/2/23.
  */
-public class MenuItem {
+public class MenuItem extends MenuComponent{
     private String name;
     private String description;
     private boolean vegetarian;
@@ -47,4 +47,15 @@ public class MenuItem {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public void print() {
+        System.out.println("MenuItem{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", vegetarian=" + vegetarian +
+                ", price=" + price +
+                '}');
+    }
+
 }
