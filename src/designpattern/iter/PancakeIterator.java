@@ -19,7 +19,7 @@ public class PancakeIterator implements Iterator{
     @Override
     public boolean hasNext() {
 
-        if(menuItems.get(position)!=null){
+        if(position<menuItems.size()){
             return true;
         }
         return false;

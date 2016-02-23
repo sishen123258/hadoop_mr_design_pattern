@@ -3,13 +3,13 @@ package designpattern.iter;
 /**
  * Created by Tong on 2016/2/23.
  */
-public class DinerMenu {
+public class DinerMenuHouse implements Menu{
 
     static final int MAX_ITEMS=6;
     private int numberOfItem=0;
     private MenuItem [] menuItems;
 
-    public DinerMenu() {
+    public DinerMenuHouse() {
         this.menuItems = new MenuItem[6];
         addMenuItem("B chicken","dinner",true,58.8);
         addMenuItem("B egg and rice","dinner",false,8.8);

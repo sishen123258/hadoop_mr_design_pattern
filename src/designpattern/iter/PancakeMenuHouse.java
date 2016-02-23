@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by Tong on 2016/2/23.
  */
-public class PancakeMenuHouse {
+public class PancakeMenuHouse implements Menu{
 
     //他是自动扩容的
     private ArrayList<MenuItem> menuItems;
@@ -23,8 +23,8 @@ public class PancakeMenuHouse {
         return menuItems;
     }*/
 
-    public PancakeIterator createIterator(){
-        return new PancakeIterator(this.menuItems);
+    public java.util.Iterator createIterator(){
+        return menuItems.iterator();
     }
 
     public void addMenuItem(String name, String description, boolean vegetarian, double price) {

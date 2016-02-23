@@ -3,7 +3,7 @@ package designpattern.iter;
 /**
  * Created by Tong on 2016/2/23.
  */
-public class DinerIterator implements Iterator {
+public class DinerIterator implements java.util.Iterator {
 
     private MenuItem[] menuItems;
     private int position=0;
