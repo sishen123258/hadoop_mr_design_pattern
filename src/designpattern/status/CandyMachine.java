@@ -1,7 +1,7 @@
 package designpattern.status;
 
 /**
- * Created by Tong on 2016/2/25.
+ * 当需要添加新的状态的时候，就需要更改现在有的代码，为了封装变化的部分，采用了接口，加状态类的设计模式。
  */
 public class CandyMachine {
 
@@ -30,6 +30,50 @@ public class CandyMachine {
             System.out.println("Candy is sold out");
         }else if (status==SOLD){
             System.out.println("Pleasing waiting , candy is making!");
+        }
+    }
+
+    public void ejectQuarter(){
+        if(status==HAS_QUARTER){
+            this.status=NO_QUARTER;
+            System.out.println("Quarter returned.");
+        }else if (NO_QUARTER == status) {
+            System.out.println("You haven't inserted quarter.");
+        }else if (status==SOLD_OUT){
+            System.out.println("You can't eject.You haven't inserted quarter yet.");
+        }else if(status==SOLD){
+            System.out.println("Sourry , you have already turned the crank.");
+        }
+    }
+
+    public void turnCrank(){
+        if(status==SOLD_OUT){
+            System.out.println("You turned the crank,but there is no candy.");
+        }else if (status==SOLD) {
+            System.out.println("You have turn crank once before, please insert another quarter.");
+        }else if (status==NO_QUARTER){
+            System.out.println("There is no quarters.");
+        }else if(status==HAS_QUARTER){
+            status=SOLD;
+            dispense();
+        }
+    }
+
+    private void dispense() {
+        if (status==SOLD){
+            System.out.println("The candy is out.");
+            count--;
+            if (count>0){
+                status=NO_QUARTER;
+            }else {
+                status=SOLD_OUT;
+            }
+        }else if(status==NO_QUARTER){
+            System.out.println("You need a pay first.");
+        }else if(status==HAS_QUARTER){
+            System.out.println("No candy dispense.");
+        }else if(status==SOLD_OUT){
+            System.out.println("No candy dispense.");
         }
     }
 
