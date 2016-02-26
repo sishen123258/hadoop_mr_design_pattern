@@ -1,15 +1,19 @@
 package designpattern.status;
 
 import designpattern.status.inter.Status;
+import designpattern.status.inter.StatusCandyMachineRemote;
 import designpattern.status.pojo.HasQuarterStatus;
 import designpattern.status.pojo.NoQuarterStatus;
 import designpattern.status.pojo.SoldOutStatus;
 import designpattern.status.pojo.SoldStatus;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 /**
  * Created by Tong on 2016/2/25.
  */
-public class StatusCandyMachine{
+public class StatusCandyMachine extends UnicastRemoteObject implements StatusCandyMachineRemote{
     private Status soldOutStatus;
     private Status soldStatus;
     private Status hasQuarterStatus;
@@ -20,7 +24,10 @@ public class StatusCandyMachine{
 
     private String location;
 
-    public StatusCandyMachine(int count) {
+    public StatusCandyMachine() throws RemoteException {
+    }
+
+    public StatusCandyMachine(int count)throws RemoteException {
         this.soldOutStatus = new SoldOutStatus(this);
         this.soldStatus = new SoldStatus(this);
         this.hasQuarterStatus = new HasQuarterStatus(this);
@@ -30,7 +37,7 @@ public class StatusCandyMachine{
         this.count=count;
     }
 
-    public StatusCandyMachine(int count, String location) {
+    public StatusCandyMachine(int count, String location) throws RemoteException{
         this(count);
         this.location=location;
     }
