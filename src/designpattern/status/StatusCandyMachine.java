@@ -18,15 +18,22 @@ public class StatusCandyMachine{
     private Status status=soldStatus;
     private int count=0;
 
-    public StatusCandyMachine() {
-        this.soldOutStatus = new SoldOutStatus();
-        this.soldStatus = new SoldStatus();
-        this.hasQuarterStatus = new HasQuarterStatus();
-        this.noQuarterStatus = new NoQuarterStatus();
+    private String location;
 
-        status=noQuarterStatus;
+    public StatusCandyMachine(int count) {
+        this.soldOutStatus = new SoldOutStatus(this);
+        this.soldStatus = new SoldStatus(this);
+        this.hasQuarterStatus = new HasQuarterStatus(this);
+        this.noQuarterStatus = new NoQuarterStatus(this);
+        if(count>0)
+            status=noQuarterStatus;
+        this.count=count;
     }
 
+    public StatusCandyMachine(int count, String location) {
+        this(count);
+        this.location=location;
+    }
 
     public void insertQuarter() {
         status.insertQuarter();
@@ -39,6 +46,10 @@ public class StatusCandyMachine{
     public void turnCrank() {
         status.turnCrank();
         status.dispense();
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     public Status getStatus() {
@@ -54,5 +65,25 @@ public class StatusCandyMachine{
         if(count>0){
             this.count--;
         }
+    }
+
+    public Status getSoldOutStatus() {
+        return soldOutStatus;
+    }
+
+    public Status getSoldStatus() {
+        return soldStatus;
+    }
+
+    public Status getHasQuarterStatus() {
+        return hasQuarterStatus;
+    }
+
+    public Status getNoQuarterStatus() {
+        return noQuarterStatus;
+    }
+
+    public int getCount() {
+        return count;
     }
 }
