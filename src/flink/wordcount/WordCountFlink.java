@@ -24,7 +24,6 @@ public class WordCountFlink {
                 .groupBy(0).sum(1);
         counts.writeAsText("/home/tong/test_flimk.txt");
         environment.execute("WordCount-flink");
-
     }
 
 }
