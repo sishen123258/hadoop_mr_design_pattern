@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>WebSocketServer</title>
+</head>
+<body>
+<script>
+    var socket;
+    if (!window.WebSocket) {
+        window.WebSocket = window.MozWebSocket;
+    }
+    if (window.WebSocket) {
+        socket = new WebSocket("ws://localhost:8080/WebSocket");
+        socket.onmessage = function (event) {
+            var tar = document.getElementsById("responseText")
+            tar.value = ""
+            tar.value = event.data
+            console.info(event.data)
+        }
+        socket.onopen = function (event) {
+            var tar = document.getElementsById("responseText")
+            tar.value = "浏览器支持WebSocket"
+        }
+        socket.onopen = function (event) {
+            var tar = document.getElementsById("responseText")
+            tar.value = ""
+            tar.value = "WebSocket关闭"
+        }
+
+    } else {
+        alert("浏览器不支持webSocket")
+    }
+
+    function send(message) {
+        if (!window.WebSocket)
+            return;
+
+        if (socket.readyState == WebSocket.open()) {
+            socket.send(message)
+        } else {
+            alert("连接没有建立成功!");
+        }
+
+    }
+</script>
+<form onsubmit="return false;">
+    <input type="text" name="message" value="submit">
+    <input type="button" value="send" onclick="send(this.form.message.value)">
+    <hr color="blue">
+    <h3>Server returned data</h3>
+    <textarea id="responseText"></textarea>
+</form>
+
+</body>
+</html>
