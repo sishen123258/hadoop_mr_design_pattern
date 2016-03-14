@@ -1,4 +1,4 @@
-package mrdesignpatterb.filter;
+package mrdesignpattern.filter;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;

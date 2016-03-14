@@ -22,8 +22,6 @@ public class StatusCandyMachineDriver {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
-
     }
 
 

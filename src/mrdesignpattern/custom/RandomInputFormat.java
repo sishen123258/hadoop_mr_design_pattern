@@ -1,4 +1,4 @@
-package mrdesignpatterb.custom;
+package mrdesignpattern.custom;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;

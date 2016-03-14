@@ -1,4 +1,4 @@
-package mrdesignpatterb.average;
+package mrdesignpattern.average;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Reducer;

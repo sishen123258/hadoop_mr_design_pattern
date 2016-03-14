@@ -1,4 +1,4 @@
-package mrdesignpatterb.Join;
+package mrdesignpattern.Join;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;

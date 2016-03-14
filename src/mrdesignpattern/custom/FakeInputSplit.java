@@ -1,4 +1,4 @@
-package mrdesignpatterb.custom;
+package mrdesignpattern.custom;
 
 import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.io.Writable;

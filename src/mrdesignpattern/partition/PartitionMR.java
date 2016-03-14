@@ -1,4 +1,4 @@
-package mrdesignpatterb.partition;
+package mrdesignpattern.partition;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
